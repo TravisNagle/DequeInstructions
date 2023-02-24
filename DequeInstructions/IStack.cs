@@ -8,8 +8,8 @@ namespace DequeInstructions
 {
     public interface IStack<T>
     {
-        public T Pop();
+        public T? Pop();
         public void Push(T item);
-        public T Peek();
+        public T? Peek();
     }
 }

@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace DequeInstructions
 {
-    public class MyDeque : IStack, IQueue
+    public class MyDeque<T> : IStack<T>, IQueue<T>
     {
+        public T Dequeue()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Enqueue(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Peek()
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Pop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Push(T item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
