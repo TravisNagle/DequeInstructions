@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DequeInstructions
 {
-    public class MyDeque
+    public class MyDeque : IStack, IQueue
     {
     }
 }
