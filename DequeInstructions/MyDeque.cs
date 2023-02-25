@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace DequeInstructions
     public class MyDeque<T> : IStack<T>, IQueue<T>
     {
         private T[] MyArray { get; set; }
+        private int Count { get; set; }
 
         public MyDeque(int maxSize = 10)
         {
@@ -17,6 +19,7 @@ namespace DequeInstructions
 
         public T Dequeue()
         {
+
             throw new NotImplementedException();
         }
 
@@ -37,7 +40,18 @@ namespace DequeInstructions
 
         public void Push(T item)
         {
-            throw new NotImplementedException();
+            MyArray[Count] = item;
+            Count++;
+        }
+
+        public override string ToString()
+        {
+            string info = "";
+            foreach(var item in MyArray)
+            {
+                info += $"{item}\n";
+            }
+            return info;
         }
     }
 }

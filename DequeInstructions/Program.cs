@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            MyDeque<int> deque= new MyDeque<int>(4);
+            deque.Push(15);
+            Console.WriteLine(deque);
         }
     }
 }
