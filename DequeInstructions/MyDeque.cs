@@ -47,6 +47,10 @@ namespace DequeInstructions
 
         public T Pop()
         {
+            if(Count == 0)
+            {
+                return default(T);
+            }
             Count--;
             return MyArray[Count];
         }
