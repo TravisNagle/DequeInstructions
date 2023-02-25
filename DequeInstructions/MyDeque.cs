@@ -8,6 +8,13 @@ namespace DequeInstructions
 {
     public class MyDeque<T> : IStack<T>, IQueue<T>
     {
+        private T[] MyArray { get; set; }
+
+        public MyDeque(int maxSize = 10)
+        {
+            MyArray= new T[maxSize];
+        }
+
         public T Dequeue()
         {
             throw new NotImplementedException();
