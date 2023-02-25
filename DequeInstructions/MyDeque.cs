@@ -42,7 +42,11 @@ namespace DequeInstructions
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            if (Count == 0)
+            {
+                return default(T);
+            }
+            return MyArray[Count - 1];
         }
 
         public T Pop()
