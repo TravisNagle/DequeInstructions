@@ -10,11 +10,23 @@ namespace DequeInstructions
     public class MyDeque<T> : IStack<T>, IQueue<T>
     {
         private T[] MyArray { get; set; }
-        private int Count { get; set; }
+        private int _count;
 
         public MyDeque(int maxSize = 10)
         {
             MyArray= new T[maxSize];
+        }
+
+        public int Count
+        {
+            get 
+            { 
+                return _count; 
+            }
+            set 
+            { 
+                _count = Math.Max(0, value); 
+            }
         }
 
         public T Dequeue()
@@ -35,23 +47,14 @@ namespace DequeInstructions
 
         public T Pop()
         {
-            throw new NotImplementedException();
+            Count--;
+            return MyArray[Count];
         }
 
         public void Push(T item)
         {
             MyArray[Count] = item;
             Count++;
-        }
-
-        public override string ToString()
-        {
-            string info = "";
-            foreach(var item in MyArray)
-            {
-                info += $"{item}\n";
-            }
-            return info;
         }
     }
 }

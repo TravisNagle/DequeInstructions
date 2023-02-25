@@ -4,9 +4,12 @@
     {
         static void Main(string[] args)
         {
-            MyDeque<int> deque= new MyDeque<int>(4);
+            MyDeque<int> deque= new MyDeque<int>();
             deque.Push(15);
-            Console.WriteLine(deque);
+            deque.Push(15);
+            deque.Push(15);
+            deque.Push(15);
+            deque.Push(15);
         }
     }
 }
