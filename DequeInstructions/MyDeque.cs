@@ -145,5 +145,19 @@ namespace DequeInstructions
             StackCount++;
             totalCount++;
         }
+
+        /// <summary>
+        /// Converts the deque to string values
+        /// </summary>
+        /// <returns>Deque as a string listed horizontally</returns>
+        public override string ToString()
+        {
+            string info = "";
+            for(int i = 0; i < MyArray.Length; i++)
+            {
+                info += $"{MyArray[i]} ";
+            }
+            return info;
+        }
     }
 }
