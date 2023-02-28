@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,72 +21,93 @@ namespace DequeInstructions
     public class MyDeque<T> : IStack<T>, IQueue<T>
     {
         private T[] MyArray { get; set; }
-        private int _count;
-        private int currentLocation;
-        private int queueCount = 0;
+        private int _stackCount;
+        private int _currentLocation;
+        private int _queueCount;
+        private int totalCount = 0;
 
         public MyDeque(int maxSize = 10)
         {
-            MyArray= new T[maxSize];
-            currentLocation = 0;
+            MyArray = new T[maxSize];
+            CurrentLocation = MyArray.Length - 1;
         }
 
-        public int Count
+        public int StackCount
         {
             get 
             { 
-                return _count; 
+                return _stackCount; 
             }
             set 
             { 
-                _count = Math.Max(0, value); 
+                _stackCount = Math.Max(0, value); 
+            }
+        }
+
+        
+        public int QueueCount
+        {
+            get
+            {
+                return _queueCount;
+            }
+            set
+            {
+                _queueCount = value;
+            }
+        }
+        
+        public int CurrentLocation
+        {
+            get 
+            { 
+                return _currentLocation; 
+            }
+            set 
+            { 
+                _currentLocation = Math.Min(MyArray.Length - 1, value); 
             }
         }
 
         public T Dequeue()
-        {   
-            T result = MyArray[currentLocation];
-            currentLocation++;
-            if(currentLocation == MyArray.Length)
-            {
-                currentLocation = 0;
-            }
+        {
+            QueueCount--;
+            T result = MyArray[QueueCount];
             return result;
         }
         
         public void Enqueue(T item)
         {
-            MyArray[queueCount] = item;
-            queueCount++;
-            if(queueCount == MyArray.Length && currentLocation != 0)
-            {
-                queueCount = 0;
-            }
+            MyArray[CurrentLocation] = item;
+            CurrentLocation--;
         }
 
         public T Peek()
         {
-            if (Count == 0)
+            if (StackCount == 0)
             {
                 return default(T);
             }
-            return MyArray[Count - 1];
+            return MyArray[StackCount - 1];
         }
 
         public T Pop()
         {
-            if(Count == 0)
+            if(StackCount == 0)
             {
                 return default(T);
             }
-            Count--;
-            return MyArray[Count];
+            StackCount--;
+            T result = MyArray[StackCount];
+            totalCount--;
+            return result;
         }
 
         public void Push(T item)
         {
-            MyArray[Count] = item;
-            Count++;
+            MyArray[StackCount] = item;
+            StackCount++;
+            totalCount++;
         }
 
         public override string ToString()
