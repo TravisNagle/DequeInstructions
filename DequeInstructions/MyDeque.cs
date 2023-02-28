@@ -17,15 +17,17 @@ using System.Threading.Tasks;
 
 namespace DequeInstructions
 {
-    public class MyDeque<T> : IStack<T>, IQueue<T>, ICollection
+    public class MyDeque<T> : IStack<T>, IQueue<T>
     {
         private T[] MyArray { get; set; }
         private int _count;
-        private int _currentLocation;
+        private int currentLocation;
+        private int queueCount = 0;
 
         public MyDeque(int maxSize = 10)
         {
             MyArray= new T[maxSize];
+            currentLocation = 0;
         }
 
         public int Count
@@ -40,51 +42,24 @@ namespace DequeInstructions
             }
         }
 
-        public int CurrentLocation
-        {
-            get
+        public T Dequeue()
+        {   
+            T result = MyArray[currentLocation];
+            currentLocation++;
+            if(currentLocation == MyArray.Length)
             {
-                return _currentLocation;
+                currentLocation = 0;
             }
-            set
-            {
-                _currentLocation = Math.Min(MyArray.Length - 1, value);
-            }
-        }
-
-        public bool IsSynchronized => false;
-
-        public object SyncRoot => this;
-
-        public T Dequeue() //Pulling from the start of the line
-        {
-            T initialResult = MyArray[0];
-            if(Count == 0)
-            {
-                return default(T);
-            }
-            for(int i = Count - 1; i > 0; i--)
-            {
-                MyArray[i - 1] = MyArray[i];
-            }
-            Count--;
-            return initialResult;
+            return result;
         }
         
         public void Enqueue(T item)
         {
-            if(Count != MyArray.Length)
+            MyArray[queueCount] = item;
+            queueCount++;
+            if(queueCount == MyArray.Length && currentLocation != 0)
             {
-                for(int i = 1; i < MyArray.Length; i++)
-                {
-                    MyArray[i] = MyArray[i - 1];
-                }
-                MyArray[0] = item;
-                Count++;
-            }
-            else
-            {
-                throw new Exception("The Deque is full");
+                queueCount = 0;
             }
         }
 
@@ -113,22 +88,12 @@ namespace DequeInstructions
             Count++;
         }
 
-        public void CopyTo(Array array, int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
         public override string ToString()
         {
             string info = "";
             for(int i  = 0; i < MyArray.Length; i++)
             {
-                info += $"{MyArray[i]}\n";
+                info += $"{MyArray[i]} ";
             }
             return info;
         }
