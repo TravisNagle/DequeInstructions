@@ -55,7 +55,9 @@ namespace DequeInstructions
             }
         }
 
-        
+        /// <summary>
+        /// Keeps track of elements added through queue functions
+        /// </summary>
         public int QueueCount
         {
             get
@@ -64,10 +66,13 @@ namespace DequeInstructions
             }
             set
             {
-                _queueCount = value;
+                _queueCount = Math.Max(0, value);
             }
         }
         
+        /// <summary>
+        /// Keeps track of the current location of the latest queue'd item
+        /// </summary>
         public int CurrentLocation
         {
             get 
@@ -80,6 +85,10 @@ namespace DequeInstructions
             }
         }
 
+        /// <summary>
+        /// Returns an item from the back of the array (As of submission this does not work as intended)
+        /// </summary>
+        /// <returns>Item from back of array</returns>
         public T Dequeue()
         {
             QueueCount--;
@@ -87,6 +96,10 @@ namespace DequeInstructions
             return result;
         }
         
+        /// <summary>
+        /// Inserts an item into the back of the array
+        /// </summary>
+        /// <param name="item">Item to be added</param>
         public void Enqueue(T item)
         {
             MyArray[CurrentLocation] = item;
@@ -131,16 +144,6 @@ namespace DequeInstructions
             MyArray[StackCount] = item;
             StackCount++;
             totalCount++;
-        }
-
-        public override string ToString()
-        {
-            string info = "";
-            for(int i  = 0; i < MyArray.Length; i++)
-            {
-                info += $"{MyArray[i]} ";
-            }
-            return info;
         }
     }
 }
