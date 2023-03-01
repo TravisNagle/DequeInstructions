@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DequeInstructions", "DequeInstructions\DequeInstructions.csproj", "{D15837F6-F8D7-4A37-967C-87E33CE0C91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DequeInstructions", "DequeInstructions\DequeInstructions.csproj", "{D15837F6-F8D7-4A37-967C-87E33CE0C91E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DequeTest", "DequeTest\DequeTest.csproj", "{F88FCB01-D1BE-40B5-BEFC-54240A4DAF19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D15837F6-F8D7-4A37-967C-87E33CE0C91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D15837F6-F8D7-4A37-967C-87E33CE0C91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D15837F6-F8D7-4A37-967C-87E33CE0C91E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88FCB01-D1BE-40B5-BEFC-54240A4DAF19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88FCB01-D1BE-40B5-BEFC-54240A4DAF19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88FCB01-D1BE-40B5-BEFC-54240A4DAF19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88FCB01-D1BE-40B5-BEFC-54240A4DAF19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

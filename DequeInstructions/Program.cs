@@ -12,7 +12,7 @@ namespace DequeInstructions
     /// <summary>
     /// Driver class used to display the different methods used in a deque
     /// </summary>
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// Main method to display deque functions

@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace DequeInstructions
     /// Implementation of the MyDeque class which allows for items to be pulled from the front and back
     /// </summary>
     /// <typeparam name="T">Generic data type</typeparam>
-    public class MyDeque<T> : IStack<T>, IQueue<T>
+    public class MyDeque<T> : IStack<T>, IQueue<T>, ICollection, IEnumerable
     {
         private T[] MyArray { get; set; }
         private int _stackCount;
@@ -84,6 +85,12 @@ namespace DequeInstructions
                 _currentLocation = Math.Min(MyArray.Length - 1, value); 
             }
         }
+
+        public int Count => throw new NotImplementedException();
+
+        public bool IsSynchronized => false;
+
+        public object SyncRoot => this;
 
         /// <summary>
         /// Returns an item from the back of the array 
@@ -166,6 +173,32 @@ namespace DequeInstructions
                 info += $"{MyArray[i]} ";
             }
             return info;
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            if (index + totalCount > array.Length)
+            {
+                throw new ArgumentException("This array is not large enough to copy all elements.");
+            }
+
+            for (int i = 0; i < Count; i++)
+            {
+                array.SetValue(MyArray[i], index + i);
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < totalCount; i++)
+            {
+                yield return MyArray[i];
+            }
+        }
+
+        public T GetArrayValue(int index)
+        {
+            return MyArray[index];
         }
     }
 }
