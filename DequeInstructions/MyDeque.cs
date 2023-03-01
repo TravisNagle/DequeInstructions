@@ -86,13 +86,19 @@ namespace DequeInstructions
         }
 
         /// <summary>
-        /// Returns an item from the back of the array (As of submission this does not work as intended)
+        /// Returns an item from the back of the array 
         /// </summary>
         /// <returns>Item from back of array</returns>
         public T Dequeue()
         {
             QueueCount--;
-            T result = MyArray[QueueCount];
+            totalCount--;
+            CurrentLocation++;
+            T result = MyArray[MyArray.Length - 1];
+            for (int i = MyArray.Length - 1; i >= CurrentLocation; i--)
+            {
+                MyArray[i] = MyArray[i - 1];
+            }
             return result;
         }
         
@@ -102,6 +108,8 @@ namespace DequeInstructions
         /// <param name="item">Item to be added</param>
         public void Enqueue(T item)
         {
+            QueueCount++;
+            totalCount++;
             MyArray[CurrentLocation] = item;
             CurrentLocation--;
         }
